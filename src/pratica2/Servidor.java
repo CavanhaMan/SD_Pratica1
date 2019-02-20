@@ -1,0 +1,52 @@
+package pratica2;
+/*
++--------------------+
+| Rodrigo CavanhaMan |
+|        IFTM        |
+|SistemasDistribuídos|
++--------------------+
+*/
+import java.io.*;
+import java.net.*;
+
+public class Servidor {
+    public static void main(String[] args)  {
+        
+        try {
+            
+            InetAddress endereco_remoto;
+            int porta_remota;
+            
+            ServerSocket s = new ServerSocket(2000);//o server socket tem um serviço que espera conexao (implementado abaixo)
+            System.out.println("Esperando conexao..........");
+            
+            Socket conexao = s.accept(); //esta opção faz o servidor ficar rodando esperando conexao
+            System.out.println("Conexao aceita - esperando dados....");
+            
+            endereco_remoto = conexao.getInetAddress();
+            porta_remota = conexao.getPort();
+            
+            System.out.println("Nome da maqina remota: " + endereco_remoto.getHostName());
+            System.out.println("IP da maqina remota: " + endereco_remoto.getHostAddress());
+            System.out.println("Porta da maqina remota: " + porta_remota);
+            
+            //agora criamos os 2 canais - in e out para conexao (não sobre o s)
+            DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
+            DataInputStream entrada = new DataInputStream(conexao.getInputStream());
+
+            System.out.println("Conexão realizada com sucesso!");
+            for (int i=0 ; i<200 ; i++){
+                int entra = entrada.readInt();
+                //System.out.println("Entrei");
+                saida.writeUTF("Seu dado foi recebido: "+entra);
+            }
+
+            
+        } catch (IOException ex) {
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
+}
