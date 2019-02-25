@@ -8,11 +8,18 @@ package pratica2;
 */
 import java.io.*;
 import java.net.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Servidor {
     public static void main(String[] args)  {
         
         try {
+            Date data = new Date();
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            //e aqui vc pega a data:
+            //formatador.format( data );
+            
             
             InetAddress endereco_remoto;
             int porta_remota;
@@ -26,9 +33,17 @@ public class Servidor {
             endereco_remoto = conexao.getInetAddress();
             porta_remota = conexao.getPort();
             
+            FileWriter arq = new FileWriter("d:\\report.txt");
+            PrintWriter gravarArq = new PrintWriter(arq);
+
             System.out.println("Nome da maqina remota: " + endereco_remoto.getHostName());
             System.out.println("IP da maqina remota: " + endereco_remoto.getHostAddress());
             System.out.println("Porta da maqina remota: " + porta_remota);
+
+            gravarArq.println(formatador.format( data ));
+            gravarArq.println("Nome da maqina remota: " + endereco_remoto.getHostName());
+            gravarArq.println("IP da maqina remota: " + endereco_remoto.getHostAddress());
+            gravarArq.println("Porta da maqina remota: " + porta_remota);
             
             //agora criamos os 2 canais - in e out para conexao (não sobre o s)
             DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
@@ -40,7 +55,8 @@ public class Servidor {
                 //System.out.println("Entrei");
                 saida.writeUTF("Seu dado foi recebido: "+entra);
             }
-
+            
+            arq.close();
             
         } catch (IOException ex) {
             //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,4 +1,4 @@
-package pratica3;
+package pratica4;
 /*
 +--------------------+
 | Rodrigo CavanhaMan |
@@ -6,6 +6,7 @@ package pratica3;
 |SistemasDistribuídos|
 +--------------------+
 */
+import pratica3.*;
 import java.io.*;
 import java.net.*;
 import java.util.Date;

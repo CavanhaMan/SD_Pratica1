@@ -8,8 +8,6 @@ package pratica1;
 */
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Cliente {
     public static void main(String[] args){ //não usamos o throw para poder tratar o erro localmente e enviar uma resposta amigavel ao cliente
