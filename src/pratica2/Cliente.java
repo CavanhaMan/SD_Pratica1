@@ -20,7 +20,7 @@ public class Cliente {
             DataOutputStream saida = new DataOutputStream(s.getOutputStream());
             DataInputStream entrada = new DataInputStream(s.getInputStream());
             
-            for (int i=0 ; i<200 ; i++){
+            for (int i=0 ; i<200000 ; i++){
                 saida.writeInt(i); //envia e mostra na tela o que foi enviado
                 System.out.println("Enviei: "+i);
                 String en = entrada.readUTF();//captura o que voltou e mostra na tela o que foi retornado

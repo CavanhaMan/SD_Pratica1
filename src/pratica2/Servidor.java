@@ -36,11 +36,12 @@ public class Servidor {
             FileWriter arq = new FileWriter("d:\\report.txt");
             PrintWriter gravarArq = new PrintWriter(arq);
 
+            System.out.println("Conexão iniciada em " + formatador.format( data ));
             System.out.println("Nome da maqina remota: " + endereco_remoto.getHostName());
             System.out.println("IP da maqina remota: " + endereco_remoto.getHostAddress());
             System.out.println("Porta da maqina remota: " + porta_remota);
 
-            gravarArq.println(formatador.format( data ));
+            gravarArq.println("Conexão iniciada em " + formatador.format( data ));
             gravarArq.println("Nome da maqina remota: " + endereco_remoto.getHostName());
             gravarArq.println("IP da maqina remota: " + endereco_remoto.getHostAddress());
             gravarArq.println("Porta da maqina remota: " + porta_remota);
@@ -50,7 +51,9 @@ public class Servidor {
             DataInputStream entrada = new DataInputStream(conexao.getInputStream());
 
             System.out.println("Conexão realizada com sucesso!");
-            for (int i=0 ; i<200 ; i++){
+            gravarArq.println("Conexão encerrada em " + formatador.format( data ));
+            System.out.println("Conexão encerrada em " + formatador.format( data ));
+            for (int i=0 ; i<200000 ; i++){
                 int entra = entrada.readInt();
                 //System.out.println("Entrei");
                 saida.writeUTF("Seu dado foi recebido: "+entra);

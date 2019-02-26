@@ -5,49 +5,39 @@ package pratica4;
 |        IFTM        |
 |SistemasDistribuídos|
 +--------------------+
+THREAD - técnica para criar fluxos alternativos compartilhando memoria, disco e processador.
 */
-import pratica3.*;
 import java.io.*;
 import java.net.*;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Servidor {
+public class Servidor extends Thread {
+
+    private static Vector clientes;
+    private Socket conexao;
+    private String meuNome;
+
+    public Servidor(Socket s){
+            conexao = s;
+    }
+ 
     public static void main(String[] args)  {
         
         try {
-            Date data = new Date();
-            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            //e aqui vc pega a data:
-            //formatador.format( data );
-
-            ServerSocket s = new ServerSocket(2001);//o server socket tem um serviço que espera conexao (implementado abaixo)
-            while(true){
-                System.out.println("Aguardando conexao..........");
-
-                Socket conexao = s.accept(); //esta opção faz o servidor ficar rodando esperando conexao
-                System.out.println("Conexao aceita - " + formatador.format(data));
-
-                //agora criamos os 2 canais - in e out para conexao (não sobre o s)
-                DataInputStream entrada = new DataInputStream(conexao.getInputStream());
-                DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
-
-                String linha = entrada.readUTF();
-                while(linha!= null && !(linha.trim().equals(""))) {
-                    saida.writeUTF(linha);
-                    linha = entrada.readUTF();
-                }
-                saida.writeUTF(linha);
-                System.out.println("Conexão encerrada - " + formatador.format(data));
-
-                conexao.close();
-            }
             
+            ServerSocket s = new ServerSocket(2000);
+            while(true){
+                System.out.println("Aguardando conexao....");
+                Socket conexao = s.accept();
+                Thread t = new Servidor(conexao);
+                t.start();
+            }
+
         } catch (IOException ex) {
-            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getMessage());
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-    
 }
