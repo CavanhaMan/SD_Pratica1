@@ -29,6 +29,7 @@ public class Cliente extends Thread {
             PrintStream saida = new PrintStream (conexao.getOutputStream());
             
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Digite o seu nome: ");
             String meuNome = teclado.readLine();
             saida.println(meuNome);
             Thread t = new Cliente(conexao); //aqui eu crio a THREAD
