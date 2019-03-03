@@ -62,7 +62,7 @@ public class Cliente extends Thread {
             while(true){
                 linha = entrada.readLine();
                 if (linha.trim().equals("")){
-                    System.out.println(Color.BLUE + "Conxao encerrada em " + formatador.format(data));
+                    System.out.println(Color.RED + "Conxao encerrada em " + formatador.format(data));
                     break;
                 }
                     System.out.println();

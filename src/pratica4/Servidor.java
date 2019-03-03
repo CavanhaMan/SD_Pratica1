@@ -59,7 +59,7 @@ public class Servidor extends Thread {
             
             clientes.add(saida);
             String linha = entrada.readLine();
-            while((linha !=null) && (!linha.trim().equals(""))){
+            while((linha !=null) && (!linha.trim().equals("") && !"Sair".equalsIgnoreCase(linha))){
                 sendToAll(saida," disse: ",linha);
                 linha = entrada.readLine();
             }
