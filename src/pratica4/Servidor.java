@@ -25,23 +25,25 @@ public class Servidor extends Thread {
     }
  
     public static void main(String[] args)  {
-        clientes = new Vector();
         try {
             Date data = new Date();
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy hh:mm");
             //e aqui vc pega a data: formatador.format( data );
 
+            clientes = new Vector();
             ServerSocket s = new ServerSocket(2000);
+
             while(true){
-                System.out.println("Aguardando conexao....");
+                System.out.println(Color.BLUE + "Aguardando conexao....");
                 Socket conexao = s.accept();
-                System.out.println("Conectou");
+                System.out.println(Color.GREEN + "Conectou");
                 Thread t = new Servidor(conexao);
                 t.start();
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
         
     }
@@ -57,7 +59,7 @@ public class Servidor extends Thread {
             
             clientes.add(saida);
             String linha = entrada.readLine();
-            while((linha !=null) && !(linha.trim().equals(""))){
+            while((linha !=null) && (!linha.trim().equals(""))){
                 sendToAll(saida," disse: ",linha);
                 linha = entrada.readLine();
             }
@@ -68,7 +70,8 @@ public class Servidor extends Thread {
             conexao.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
     //saida => remetente
@@ -80,7 +83,7 @@ public class Servidor extends Thread {
             System.out.println(chat);
             if (chat != saida)
                 chat.println(meuNome + acao + linha);
-            if (acao.equalsIgnoreCase(" saiu "))
+            if (acao.equalsIgnoreCase(Color.RED + " saiu "))
                 if (chat == saida)
                     chat.println("");
         }

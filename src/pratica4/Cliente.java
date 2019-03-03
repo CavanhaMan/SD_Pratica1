@@ -24,27 +24,30 @@ public class Cliente extends Thread {
     
     public static void main(String[] args){
         try {
-            
+            //System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "RED COLORED" + Color.RESET + " NORMAL");
             Socket conexao = new Socket("localhost",2000);
             PrintStream saida = new PrintStream (conexao.getOutputStream());
             
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Digite o seu nome: ");
+            System.out.print(Color.GREEN + "Digite o seu nome: ");
             String meuNome = teclado.readLine();
             saida.println(meuNome);
+            
             Thread t = new Cliente(conexao); //aqui eu crio a THREAD
             t.start();                       //aqui eu starto a THREAD
             String linha;
+            
             while(true){
                 if(done)
                     break;
-                System.out.print("> ");
+                System.out.print(Color.RESET + "> ");
                 linha = teclado.readLine();
                 saida.println(linha);
             }
             
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
     
@@ -59,17 +62,18 @@ public class Cliente extends Thread {
             while(true){
                 linha = entrada.readLine();
                 if (linha.trim().equals("")){
-                    System.out.println("Conxao encerrada em " + formatador.format(data));
+                    System.out.println(Color.BLUE + "Conxao encerrada em " + formatador.format(data));
                     break;
                 }
                     System.out.println();
                     System.out.println(linha);
-                    System.out.println("...> ");
+                    System.out.println(Color.RESET + "...> ");
             }
             done=true;
             
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
  }
