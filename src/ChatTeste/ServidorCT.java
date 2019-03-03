@@ -91,8 +91,7 @@ public class ServidorCT extends Thread {
             JOptionPane.showMessageDialog(null, texts);
             server = new ServerSocket(Integer.parseInt(txtPorta.getText()));
             clientes = new ArrayList<BufferedWriter>();
-            JOptionPane.showMessageDialog(null,"Servidor ativo na porta: "+         
-            txtPorta.getText());
+            JOptionPane.showMessageDialog(null,"Servidor ativo na porta: " + txtPorta.getText());
 
             while(true){
                 System.out.println("Aguardando conexão...");

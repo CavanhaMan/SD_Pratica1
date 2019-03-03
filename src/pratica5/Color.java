@@ -1,4 +1,4 @@
-package pratica4;
+package pratica5;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *
@@ -6,6 +6,8 @@ package pratica4;
 ***********************************************
 * Classe para implementar cores nas mensagens *
 ***********************************************/
+import pratica4.*;
+
 public class Color {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset

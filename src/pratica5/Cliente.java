@@ -1,11 +1,12 @@
-package pratica4;
-/************************************
-*        Rodrigo  CavanhaMan        *
-*               IFTM                *
-*       Sistemas Distribuídos       *
-*************************************
-*Chat Multithread com Socket em Java*
-*************************************/
+package pratica5;
+/**********************************************
+*             Rodrigo  CavanhaMan             *
+*                    IFTM                     *
+*            Sistemas Distribuídos            *
+***********************************************
+*Chat Multithread com Socket e Janelas em Java*
+***********************************************/
+import pratica4.*;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class Cliente extends Thread {
             PrintStream saida = new PrintStream (conexao.getOutputStream());
             
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print(pratica5.Color.GREEN + "Digite o seu nome: ");
+            System.out.print(Color.GREEN + "Digite o seu nome: ");
             String meuNome = teclado.readLine();
             saida.println(meuNome);
             
@@ -39,14 +40,14 @@ public class Cliente extends Thread {
             while(true){
                 if(done)
                     break;
-                System.out.print(pratica5.Color.RESET + "> ");
+                System.out.print(Color.RESET + "> ");
                 linha = teclado.readLine();
                 saida.println(linha);
             }
             
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(pratica5.Color.RED_BOLD + pratica5.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
     
@@ -61,18 +62,18 @@ public class Cliente extends Thread {
             while(true){
                 linha = entrada.readLine();
                 if (linha.trim().equals("")){
-                    System.out.println(pratica5.Color.RED + "Conxao encerrada em " + formatador.format(data));
+                    System.out.println(Color.RED + "Conxao encerrada em " + formatador.format(data));
                     break;
                 }
                     System.out.println();
                     System.out.println(linha);
-                    System.out.println(pratica5.Color.RESET + "...> ");
+                    System.out.println(Color.RESET + "...> ");
             }
             done=true;
             
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(pratica5.Color.RED_BOLD + pratica5.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+            System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
  }

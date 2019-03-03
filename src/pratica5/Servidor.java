@@ -1,11 +1,12 @@
-package pratica4;
-/************************************
-*        Rodrigo  CavanhaMan        *
-*               IFTM                *
-*       Sistemas Distribuídos       *
-*************************************
-*Chat Multithread com Socket em Java*
-*************************************/
+package pratica5;
+/**********************************************
+*             Rodrigo  CavanhaMan             *
+*                    IFTM                     *
+*            Sistemas Distribuídos            *
+***********************************************
+*Chat Multithread com Socket e Janelas em Java*
+***********************************************/
+import pratica4.*;
 import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
