@@ -1,8 +1,7 @@
 package ChatTeste;
-/*
-+--------------------+
-| Rodrigo CavanhaMan |
-+--------------------+
+/*--------------------*
+ * Rodrigo CavanhaMan *
+ *--------------------*
 https://www.devmedia.com.br/como-criar-um-chat-multithread-com-socket-em-java/33639
 */
 import java.io.BufferedReader;
@@ -68,7 +67,7 @@ public class Servidor extends Thread {
      * @param msg do tipo String
      * @throws IOException
      */
-    public void sendToAll(BufferedWriter bwSaida, String msg) throws  IOException {
+    public void sendToAll(BufferedWriter bwSaida, String msg) throws IOException {
         BufferedWriter bwS;
         for(BufferedWriter bw : clientes){
             bwS = (BufferedWriter)bw;
@@ -80,11 +79,10 @@ public class Servidor extends Thread {
     }
 
     /***
-   * Método main
-   * @param args
-   */
+    * Método main
+    * @param args
+    */
     public static void main(String []args) {
-
         try{
             //Cria os objetos necessário para instânciar o servidor
             JLabel lblMessage = new JLabel("Porta do Servidor:");
@@ -104,9 +102,7 @@ public class Servidor extends Thread {
                 t.start();   
             }
 
-        }catch (Exception e) {
-          e.printStackTrace();
-        }
+        }catch (Exception e) {e.printStackTrace();}
     }// Fim do método main                      
 } //Fim da classe
 

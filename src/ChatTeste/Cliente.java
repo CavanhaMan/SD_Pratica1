@@ -1,8 +1,7 @@
 package ChatTeste;
-/*
-+--------------------+
-| Rodrigo CavanhaMan |
-+--------------------+
+/*--------------------*
+ * Rodrigo CavanhaMan *
+ *--------------------*
 https://www.devmedia.com.br/como-criar-um-chat-multithread-com-socket-em-java/33639
 */
 import java.awt.Color;
@@ -52,7 +51,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
         Object[] texts = {lblMessage, txtIP, txtPorta, txtNome };  
         JOptionPane.showMessageDialog(null, texts);              
         pnlContent = new JPanel();
-        texto              = new JTextArea(10,20);
+        texto = new JTextArea(10,20);
         texto.setEditable(false);
         texto.setBackground(new Color(240,240,240));
         txtMsg = new JTextField(20);
@@ -91,7 +90,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
       * @throws IOException
       */
     public void conectar() throws IOException{
-
         socket = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
         ou = socket.getOutputStream();
         ouw = new OutputStreamWriter(ou);
@@ -100,14 +98,12 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
         bfw.flush();
     }
 
-
     /***
       * Método usado para enviar mensagem para o server socket
       * @param msg do tipo String
       * @throws IOException retorna IO Exception caso dê algum erro.
       */
     public void enviarMensagem(String msg) throws IOException{
-
         if(msg.equals("Sair")){
             bfw.write("Desconectado \r\n");
             texto.append("Desconectado \r\n");
@@ -145,7 +141,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
       * @throws IOException retorna IO Exception caso dê algum erro.
       */
     public void sair() throws IOException{
-
         enviarMensagem("Sair");
         bfw.close();
         ouw.close();
@@ -163,7 +158,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
                     sair();
         } catch (IOException e1) {e1.printStackTrace();}                       
     }
-
 
     @Override
     public void keyPressed(KeyEvent e) {
