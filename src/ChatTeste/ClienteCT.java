@@ -24,7 +24,7 @@ import javax.swing.*;
  *
  * @author Cavanha
  */
-public class Cliente extends JFrame implements ActionListener, KeyListener {
+public class ClienteCT extends JFrame implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 1L;
     private JTextArea texto;
@@ -43,7 +43,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
     private JTextField txtNome;
 
 
-    public Cliente() throws IOException{                  
+    public ClienteCT() throws IOException{                  
         JLabel lblMessage = new JLabel("Verificar!");
         txtIP = new JTextField("127.0.0.1");
         txtPorta = new JTextField("12345");
@@ -179,7 +179,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
     }
 
     public static void main(String []args) throws IOException{
-        Cliente app = new Cliente();
+        ClienteCT app = new ClienteCT();
         app.conectar();
         app.escutar();
     }
