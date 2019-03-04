@@ -47,9 +47,9 @@ public class ClienteCT extends JFrame implements ActionListener, KeyListener {
         JLabel lblMessage = new JLabel("Verificar!");
         txtIP = new JTextField("127.0.0.1");
         txtPorta = new JTextField("12345");
-        txtNome = new JTextField("Cliente");                
-        Object[] texts = {lblMessage, txtIP, txtPorta, txtNome };  
-        JOptionPane.showMessageDialog(null, texts);              
+        txtNome = new JTextField("Cliente");
+        Object[] texts = {lblMessage, txtIP, txtPorta, txtNome };
+        JOptionPane.showMessageDialog(null, texts);
         pnlContent = new JPanel();
         texto = new JTextArea(10,20);
         texto.setEditable(false);
