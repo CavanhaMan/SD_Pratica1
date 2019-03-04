@@ -23,18 +23,15 @@ public class Cliente extends Thread {
     static JTextField txtIP;
     static JTextField txtPorta;
     static JTextField txtNome;
-    static int clienteNumber;
-    public Cliente (Socket s){
-        conexao = s;
-    }
+
+    public Cliente (Socket s){conexao = s;}
     
     public static void main(String[] args){
       try {
         JLabel lblMessage = new JLabel("Configurar os dados de conexão:");
         txtIP = new JTextField("127.0.0.1");   
         txtPorta = new JTextField("2000");
-        clienteNumber++;
-        txtNome = new JTextField("Cliente"+clienteNumber);
+        txtNome = new JTextField("");
         Object[] texts = {lblMessage, txtIP, txtPorta, txtNome };
         JOptionPane.showMessageDialog(null, texts);
         Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
