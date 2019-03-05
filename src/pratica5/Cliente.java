@@ -23,24 +23,28 @@ public class Cliente extends Thread {
     static JTextField txtIP;
     static JTextField txtPorta;
     static JTextField txtNome;
-
+    public static String meuNome = "teste";
+    
     public Cliente (Socket s){conexao = s;}
     
     public static void main(String[] args){
       try {
+        FileWriter arq2 = new FileWriter("d:\\Server_Messenger_Report.txt");//Abre arquivo de mensagens
+        PrintWriter gravarArq2 = new PrintWriter(arq2);
+          
         JLabel lblMessage = new JLabel("Configurar os dados de conexão:");
         txtIP = new JTextField("127.0.0.1");   
         txtPorta = new JTextField("2000");
         txtNome = new JTextField("");
-        Object[] texts = {lblMessage, txtIP, txtPorta, txtNome };
+        Object[] texts = {lblMessage, txtIP, txtPorta, txtNome};
         JOptionPane.showMessageDialog(null, texts);
         Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
         
         PrintStream saida = new PrintStream (conexao.getOutputStream());
             
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-        String meuNome = txtNome.getText();
-        System.out.println(Color.GREEN + "Seja bem vindo " + meuNome + "!");
+        meuNome = txtNome.getText();
+        System.out.println(Color.GREEN + "Seja bem vindo " + txtNome.getText() + "!");
             
         Thread t = new Cliente(conexao); //aqui eu crio a THREAD
         t.start();                       //aqui eu starto a THREAD

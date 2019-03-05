@@ -45,16 +45,16 @@ public class Servidor {
     DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
     DataInputStream entrada = new DataInputStream(conexao.getInputStream());
 
-    System.out.println("Conexão realizada com sucesso!");
-    gravarArq.println("Conexão encerrada em " + formatador.format( data ));
-    System.out.println("Conexão encerrada em " + formatador.format( data ));
 
-    for (int i=0 ; i<200000 ; i++){
+    for (int i=0 ; i<2000 ; i++){
         int entra = entrada.readInt();
         //System.out.println("Entrei");
         saida.writeUTF("Seu dado foi recebido: "+entra);
     }
             
+    System.out.println("Conexão realizada com sucesso!");
+    gravarArq.println("Conexão encerrada em " + formatador.format( data ));
+    System.out.println("Conexão encerrada em " + formatador.format( data ));
     arq.close();
             
   } catch (IOException ex) {
