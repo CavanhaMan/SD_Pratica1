@@ -6,7 +6,6 @@ package pratica5;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-import pratica4.*;
 import java.io.*;
 import static java.lang.Class.forName;
 import java.net.*;
@@ -137,4 +136,6 @@ public class Servidor extends Thread {
                     chat.println("");
         }
     }
+
+
 }

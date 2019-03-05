@@ -6,7 +6,6 @@ package pratica5;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-import pratica4.*;
 import java.io.*;
 import java.net.*;
 import java.util.Date;

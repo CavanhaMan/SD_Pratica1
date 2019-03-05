@@ -24,6 +24,7 @@ public class WriteFile {
     public static void main(String[] args) {
         String data = "Never fear, Cavanha is here!";
         int noOfLines = 10000;
+        
         writeUsingFileWriter(data);
         
         writeUsingBufferedWriter(data, noOfLines);
@@ -31,6 +32,7 @@ public class WriteFile {
         writeUsingFiles(data);
         
         writeUsingOutputStream(data);
+        
         System.out.println("DONE");
     }
 
