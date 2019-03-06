@@ -1,4 +1,4 @@
-package exercicio1a;
+package ChatTesteV2;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *

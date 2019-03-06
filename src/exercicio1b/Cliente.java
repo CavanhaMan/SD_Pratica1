@@ -34,6 +34,7 @@ public class Cliente extends Thread {
         txtNome = new JTextField("");
         Object[] texts = {lblMessage, txtIP, txtPorta, txtNome};
         JOptionPane.showMessageDialog(null, texts);
+        
         Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
         
         PrintStream saida = new PrintStream (conexao.getOutputStream());
