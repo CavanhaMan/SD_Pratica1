@@ -1,4 +1,4 @@
-package pratica5;
+package exercicio1a;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *

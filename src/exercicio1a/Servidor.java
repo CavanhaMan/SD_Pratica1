@@ -1,4 +1,4 @@
-package pratica5;
+package exercicio1a;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *
@@ -25,34 +25,33 @@ public class Servidor extends Thread {
     private static Vector clientes;
     private Socket conexao;
     static String nomeCli;
+    private String meuNome;
     
     public Servidor(Socket s){conexao = s;}
     public static void main(String[] args){
     InetAddress endereco_remoto;
     int porta_remota;
-
-        FileWriter arq1 = null;
-     try {
-        arq1 = new FileWriter("d:\\Server_Conection_Report.txt");//Abre arquivo de conexão
+    
+    try{ 
+        FileWriter arq1 = new FileWriter("d:/Server_Conection_Report.txt");
         PrintWriter gravarArq1 = new PrintWriter(arq1);
-
+        
         Date data = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         //e aqui vc pega a data: formatador.format( data );
-        
         
         clientes = new Vector();
         ServerSocket s = new ServerSocket(2000);//o server socket para aguardar conexao
         
         System.out.println(Color.BLUE + Color.CYAN_BACKGROUND + "___Servidor ativo!_______________________");
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + " Serviço iniciado em " + formatador.format( data ));
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + " Porta: 2000 ");
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + " IP: " + InetAddress.getLocalHost().getHostAddress()+" ");
+        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Serviço iniciado em " + formatador.format( data ));
+        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Porta: 2000");
+        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "IP: " + InetAddress.getLocalHost().getHostAddress());
         
-        gravarArq1.println("___Servidor ativo!_______________________");
-        gravarArq1.println(" Serviço iniciado em " + formatador.format( data ));
-        gravarArq1.println(" Porta: 2000 ");
-        gravarArq1.println(" IP: " + InetAddress.getLocalHost().getHostAddress()+" ");
+        gravarArq1.append("\n___Servidor ativo!_______________________");
+        gravarArq1.append("\nServiço iniciado em " + formatador.format( data ));
+        gravarArq1.append("\nPorta: 2000");
+        gravarArq1.append("\nIP: " + InetAddress.getLocalHost().getHostAddress());
         //JOptionPane.showMessageDialog(null,"Servidor ativo! Porta: 2000. IP: "+InetAddress.getLocalHost().getHostAddress());
         
         while(true){
@@ -69,20 +68,21 @@ public class Servidor extends Thread {
             System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "IP da maqina remota: " + endereco_remoto.getHostAddress());
             System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Porta da maqina remota: " + porta_remota);
             
-            gravarArq1.println("___Novo cliente conectado!_______________");
-            gravarArq1.println("Conexão iniciada em " + formatador.format( data ));
+            gravarArq1.append("\n___Novo cliente conectado!_______________");
+            gravarArq1.append("\nConexão iniciada em " + formatador.format( data ));
             //gravarArq1.println("Nome do usuário: " + nomeCli);
-            gravarArq1.println("Nome da maqina cliente: " + endereco_remoto.getHostName());
-            gravarArq1.println("IP da maqina cliente: " + endereco_remoto.getHostAddress());
-            gravarArq1.println("Porta da maqina clente: " + porta_remota);
-        arq1.close();
+            gravarArq1.append("\nNome da maqina cliente: " + endereco_remoto.getHostName());
+            gravarArq1.append("\nIP da maqina cliente: " + endereco_remoto.getHostAddress());
+            gravarArq1.append("\nPorta da maqina clente: " + porta_remota);
+
+            arq1.close();
+            
             Thread t = new Servidor(conexao);
             t.start();
         }
       } catch (IOException ex) {
-        //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
-      } finally {try {arq1.close();} catch (Exception ex) {/*ignore*/}}
+      }
     }
     
     public void run(){
@@ -90,25 +90,16 @@ public class Servidor extends Thread {
         BufferedReader entrada = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
         PrintStream saida = new PrintStream(conexao.getOutputStream());
         
+        meuNome = entrada.readLine();
+        if(meuNome == null)
+            return;
         nomeCli = Cliente.meuNome;
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Nome do usuário: " + nomeCli);
-
-        String str = ("Nome do usuário: " + nomeCli);
-        File newTextFile = new File("D:/thetextfile.txt");
-        FileWriter fw = new FileWriter(newTextFile);
-        fw.write(str);
-        fw.close();
-
-        String str2 = "SomeMoreTextIsHere";
-        File newTextFile2 = new File("D:/thetextfile2.txt");
-        FileWriter fw2 = new FileWriter(newTextFile2);
-        fw2.write(str2);
-        fw2.close();
-
+        System.out.println(Color.GREEN + Color.YELLOW_BACKGROUND + "Nome do usuário: " + nomeCli);
+        System.out.println(Color.RED + Color.YELLOW_BACKGROUND + "Nome do usuário: " + meuNome);
 
         clientes.add(saida);
         String linha = entrada.readLine();
-        while((linha !=null) && (!linha.trim().equals("") && !"".equalsIgnoreCase(linha))){
+        while((linha !=null) && (!linha.trim().equals("") && !"Sair".equalsIgnoreCase(linha))){
             sendToAll(saida," disse: ",linha);
             linha = entrada.readLine();
         }
@@ -118,7 +109,6 @@ public class Servidor extends Thread {
         conexao.close();
 
       } catch (IOException ex) {
-        //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
       }
     }

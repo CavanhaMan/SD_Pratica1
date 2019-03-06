@@ -28,7 +28,7 @@ public class Cliente extends Thread {
             PrintStream saida = new PrintStream (conexao.getOutputStream());
             
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print(pratica5.Color.GREEN + "Digite o seu nome: ");
+            System.out.print(exercicio1a.Color.GREEN + "Digite o seu nome: ");
             String meuNome = teclado.readLine();
             saida.println(meuNome);
             
@@ -39,14 +39,14 @@ public class Cliente extends Thread {
             while(true){
                 if(done)
                     break;
-                System.out.print(pratica5.Color.RESET + "> ");
+                System.out.print(exercicio1a.Color.RESET + "> ");
                 linha = teclado.readLine();
                 saida.println(linha);
             }
             
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(pratica5.Color.RED_BOLD + pratica5.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+            System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
     
@@ -61,18 +61,18 @@ public class Cliente extends Thread {
             while(true){
                 linha = entrada.readLine();
                 if (linha.trim().equals("")){
-                    System.out.println(pratica5.Color.RED + "Conxao encerrada em " + formatador.format(data));
+                    System.out.println(exercicio1a.Color.RED + "Conxao encerrada em " + formatador.format(data));
                     break;
                 }
                     System.out.println();
                     System.out.println(linha);
-                    System.out.println(pratica5.Color.RESET + "...> ");
+                    System.out.println(exercicio1a.Color.RESET + "...> ");
             }
             done=true;
             
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(pratica5.Color.RED_BOLD + pratica5.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+            System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
         }
     }
  }
