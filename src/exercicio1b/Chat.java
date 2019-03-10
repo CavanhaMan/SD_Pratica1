@@ -148,7 +148,7 @@ public class Chat extends javax.swing.JPanel implements ActionListener, KeyListe
     }//GEN-LAST:event_btEnviarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btSairActionPerformed
 
     private void cbDestaqueSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestaqueSimplesActionPerformed
