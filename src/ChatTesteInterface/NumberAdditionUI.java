@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ChatTesteInterface;
-
-/**
- *
- * @author Cavanha
- */
+/*******************************************
+*            Rodrigo CavanhaMan            *
+********************************************
+* Estudo para criação de interface gráfica *
+********************************************/
 public class NumberAdditionUI extends javax.swing.JFrame {
 
     /**
