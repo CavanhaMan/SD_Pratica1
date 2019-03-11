@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
 public class Chat extends javax.swing.JFrame {
-
+//IMPLEMENTS RUNNABLE
     /**
      * Creates new form ClienteChat
      */
@@ -30,15 +30,15 @@ public class Chat extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Texto = new javax.swing.JTextArea();
+        TextoChat = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         cbEscolhePessoa = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        tfDigite = new javax.swing.JTextField();
-        cbDestaque = new javax.swing.JCheckBox();
+        EntraMensagem = new javax.swing.JTextField();
+        Destaque = new javax.swing.JCheckBox();
         btenvia = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cbDestaqueSimples = new javax.swing.JCheckBox();
+        DestaqueSimples = new javax.swing.JCheckBox();
         btLimpar2 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -66,12 +66,12 @@ public class Chat extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        Texto.setEditable(false);
-        Texto.setColumns(20);
-        Texto.setRows(5);
-        Texto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        Texto.setFocusable(false);
-        jScrollPane1.setViewportView(Texto);
+        TextoChat.setEditable(false);
+        TextoChat.setColumns(20);
+        TextoChat.setRows(5);
+        TextoChat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        TextoChat.setFocusable(false);
+        jScrollPane1.setViewportView(TextoChat);
 
         jLabel3.setText("Mensagem privada");
 
@@ -80,31 +80,51 @@ public class Chat extends javax.swing.JFrame {
 
         jLabel5.setText("Digite uma mensagem:");
 
-        tfDigite.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tfDigite.setToolTipText("Digite aqui sua mensagem");
+        EntraMensagem.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        EntraMensagem.setToolTipText("Digite aqui sua mensagem");
 
-        cbDestaque.setText("Destaque");
-        cbDestaque.setToolTipText("Clique para destacar o texto da mensagem");
+        Destaque.setText("Destaque");
+        Destaque.setToolTipText("Clique para destacar o texto da mensagem");
 
         btenvia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/btenviar.png"))); // NOI18N
         btenvia.setToolTipText("Enviar mensagem");
+        btenvia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btenviaMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Chat");
 
-        cbDestaqueSimples.setText("Destaque simples");
-        cbDestaqueSimples.setToolTipText("Clique para criar um destaque moderado");
-        cbDestaqueSimples.addActionListener(new java.awt.event.ActionListener() {
+        DestaqueSimples.setText("Destaque simples");
+        DestaqueSimples.setToolTipText("Clique para criar um destaque moderado");
+        DestaqueSimples.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbDestaqueSimplesActionPerformed(evt);
+                DestaqueSimplesActionPerformed(evt);
             }
         });
 
         btLimpar2.setText("Limpar");
+        btLimpar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpar2ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Fechar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Limpar chat");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,10 +145,10 @@ public class Chat extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbDestaqueSimples)
+                                .addComponent(DestaqueSimples)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbDestaque))
-                            .addComponent(tfDigite, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(Destaque))
+                            .addComponent(EntraMensagem, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btenvia))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -158,10 +178,10 @@ public class Chat extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(cbDestaque)
-                            .addComponent(cbDestaqueSimples))
+                            .addComponent(Destaque)
+                            .addComponent(DestaqueSimples))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfDigite, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EntraMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btenvia))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,8 +259,18 @@ public class Chat extends javax.swing.JFrame {
         });
 
         btLimpa1.setText("Limpar");
+        btLimpa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpa1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -318,17 +348,49 @@ public class Chat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbDestaqueSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestaqueSimplesActionPerformed
+    private void DestaqueSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestaqueSimplesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbDestaqueSimplesActionPerformed
+    }//GEN-LAST:event_DestaqueSimplesActionPerformed
 
     private void ServerIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerIPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ServerIPActionPerformed
 
     private void btConectaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConectaActionPerformed
-        //System.exit(0);
+        ServerIP.setEnabled(false);
+        ServerPorta.setEnabled(false);
+        UserName.setEnabled(false);
     }//GEN-LAST:event_btConectaActionPerformed
+
+    private void btLimpa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpa1ActionPerformed
+        ServerIP.setText("");
+        ServerPorta.setText("");
+        UserName.setText("");
+    }//GEN-LAST:event_btLimpa1ActionPerformed
+
+    private void btLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpar2ActionPerformed
+        EntraMensagem.setText("");
+        DestaqueSimples.setSelected(false);
+        Destaque.setSelected(false);
+    }//GEN-LAST:event_btLimpar2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ServerIP.setEnabled(true);
+        ServerPorta.setEnabled(true);
+        UserName.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TextoChat.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btenviaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btenviaMouseClicked
+        EntraMensagem.setText("");
+    }//GEN-LAST:event_btenviaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -367,16 +429,17 @@ public class Chat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox Destaque;
+    private javax.swing.JCheckBox DestaqueSimples;
+    private javax.swing.JTextField EntraMensagem;
     private javax.swing.JTextField ServerIP;
     private javax.swing.JTextField ServerPorta;
-    private javax.swing.JTextArea Texto;
+    private javax.swing.JTextArea TextoChat;
     private javax.swing.JTextField UserName;
     private javax.swing.JButton btConecta;
     private javax.swing.JButton btLimpa1;
     private javax.swing.JButton btLimpar2;
     private javax.swing.JLabel btenvia;
-    private javax.swing.JCheckBox cbDestaque;
-    private javax.swing.JCheckBox cbDestaqueSimples;
     private javax.swing.JComboBox<String> cbEscolhePessoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -395,6 +458,5 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField tfDigite;
     // End of variables declaration//GEN-END:variables
 }

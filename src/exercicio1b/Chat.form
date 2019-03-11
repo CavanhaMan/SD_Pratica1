@@ -118,11 +118,11 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="cbDestaqueSimples" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DestaqueSimples" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="cbDestaque" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Destaque" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="tfDigite" alignment="1" max="32767" attributes="0"/>
+                              <Component id="EntraMensagem" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btenvia" min="-2" max="-2" attributes="0"/>
@@ -160,11 +160,11 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbDestaque" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbDestaqueSimples" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Destaque" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DestaqueSimples" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfDigite" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="EntraMensagem" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btenvia" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -186,7 +186,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="Texto">
+            <Component class="javax.swing.JTextArea" name="TextoChat">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -224,7 +224,7 @@
             <Property name="text" type="java.lang.String" value="Digite uma mensagem:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfDigite">
+        <Component class="javax.swing.JTextField" name="EntraMensagem">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -232,7 +232,7 @@
             <Property name="toolTipText" type="java.lang.String" value="Digite aqui sua mensagem"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="cbDestaque">
+        <Component class="javax.swing.JCheckBox" name="Destaque">
           <Properties>
             <Property name="text" type="java.lang.String" value="Destaque"/>
             <Property name="toolTipText" type="java.lang.String" value="Clique para destacar o texto da mensagem"/>
@@ -245,6 +245,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Enviar mensagem"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btenviaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -254,29 +257,38 @@
             <Property name="text" type="java.lang.String" value="Chat"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="cbDestaqueSimples">
+        <Component class="javax.swing.JCheckBox" name="DestaqueSimples">
           <Properties>
             <Property name="text" type="java.lang.String" value="Destaque simples"/>
             <Property name="toolTipText" type="java.lang.String" value="Clique para criar um destaque moderado"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbDestaqueSimplesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DestaqueSimplesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btLimpar2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimpar2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fechar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar chat"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -443,11 +455,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimpa1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
