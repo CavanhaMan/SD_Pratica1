@@ -8,12 +8,11 @@ package exercicio1b;
 ***********************************************/
 public class ClienteStart extends javax.swing.JFrame {
 
+    public static String ServerIP, ServerPorta, UserName;
     /**
      * Creates new form ClienteStart
      */
-    public ClienteStart() {
-        initComponents();
-    }
+    public ClienteStart() {initComponents();}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +42,7 @@ public class ClienteStart extends javax.swing.JFrame {
 
         jLabel2.setText("Endereço IP do Servidor ou Hostname:");
 
+        tfServerIP.setText("127.0.0.1");
         tfServerIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfServerIPActionPerformed(evt);
@@ -50,6 +50,8 @@ public class ClienteStart extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Porta do Servidor:");
+
+        tfServerPorta.setText("2000");
 
         jLabel4.setText("Nome de usuário ou apelido:");
 
@@ -137,8 +139,22 @@ public class ClienteStart extends javax.swing.JFrame {
     }//GEN-LAST:event_tfServerIPActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        ServerIP = tfServerIP.getText();
+        ServerPorta = tfServerPorta.getText();
+        UserName = tfUserName.getText();
+        System.out.println("Daqui");
+        System.out.println(ServerIP);
+        System.out.println(ServerPorta);
+        System.out.println(UserName);
+        //System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setServerIP(String ServerIP) {this.ServerIP = ServerIP;}
+    public void setServerPorta(String ServerPorta) {this.ServerPorta = ServerPorta;}
+    public void setUserName(String UserName) {this.UserName = UserName;}
+    public static String getServerIP() {return ServerIP;}
+    public static String getServerPorta() {return ServerPorta;}
+    public static String getUserName() {return UserName;}
 
     /**
      * @param args the command line arguments
