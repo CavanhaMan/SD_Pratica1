@@ -20,7 +20,6 @@ public class Cliente extends Thread {
     static JTextField txtIP;
     static JTextField txtPorta;
     static JTextField txtNome;
-    static String ip, porta, user;
 
     public Cliente (Socket s){conexao = s;}
     
@@ -29,20 +28,6 @@ public class Cliente extends Thread {
         FileWriter arquivo = new FileWriter("d:/Server_Messenger_Report.txt");
         PrintWriter gravarArquivo = new PrintWriter(arquivo);
         
-        ip = ClienteStart.getServerIP();
-        porta = ClienteStart.ServerPorta;
-        user = ClienteStart.UserName;
-        System.out.println("De lá");
-        System.out.println(ClienteStart.ServerIP);
-        System.out.println(ClienteStart.ServerPorta);
-        System.out.println(ClienteStart.UserName);
-
-        System.out.println("Daqui");
-        System.out.println(ip);
-        System.out.println(porta);
-        System.out.println(user);
-
-        
         JLabel lblMessage = new JLabel("Configurar os dados de conexão:");
         txtIP = new JTextField("127.0.0.1");   
         txtPorta = new JTextField("2000");
@@ -50,13 +35,13 @@ public class Cliente extends Thread {
         Object[] texts = {lblMessage, txtIP, txtPorta, txtNome};
         JOptionPane.showMessageDialog(null, texts);
         
-        //Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
-        Socket conexao = new Socket(ClienteStart.ServerIP,Integer.parseInt(ClienteStart.ServerPorta));
+        Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
+        //Socket conexao = new Socket(ClienteStart.ServerIP,Integer.parseInt(ClienteStart.ServerPorta));
         
         PrintStream saida = new PrintStream (conexao.getOutputStream());
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
         
-        System.out.println(Color.GREEN + "Seja bem vindo " + user + "!");
+        System.out.println(Color.GREEN + "Seja bem vindo " + txtNome.getText() + "!");
         
         Thread t = new Cliente(conexao); //aqui eu crio a THREAD
         t.start();                       //aqui eu starto a THREAD
@@ -73,13 +58,6 @@ public class Cliente extends Thread {
         System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
       }
     }
-
-    public void setIp(String ip) {this.ip = ip;}
-    public void setPorta(String porta) {this.porta = porta;}
-    public void setUser(String user) {this.user = user;}
-    public String getIp() {return ip;}
-    public String getPorta() {return porta;}
-    public String getUser() {return user;}
     
     public void run(){
      try { 
