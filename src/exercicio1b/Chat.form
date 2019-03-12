@@ -236,6 +236,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Destaque"/>
             <Property name="toolTipText" type="java.lang.String" value="Clique para destacar o texto da mensagem"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -250,6 +251,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Destaque simples"/>
             <Property name="toolTipText" type="java.lang.String" value="Clique para criar um destaque moderado"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DestaqueSimplesActionPerformed"/>

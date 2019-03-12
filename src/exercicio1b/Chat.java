@@ -1,6 +1,5 @@
 package exercicio1b;
 import javax.swing.ImageIcon;
-import exercicio1b.Cliente;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *
@@ -10,12 +9,11 @@ import exercicio1b.Cliente;
 ***********************************************/
 public class Chat extends javax.swing.JFrame {
 //IMPLEMENTS RUNNABLE
-    String stIP, stPorta, stNome;
+    static String stIP, stPorta, stNome;
     /**
      * Creates new form ClienteChat
      */
     public Chat() {initComponents();}
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,12 +85,14 @@ public class Chat extends javax.swing.JFrame {
 
         Destaque.setText("Destaque");
         Destaque.setToolTipText("Clique para destacar o texto da mensagem");
+        Destaque.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Chat");
 
         DestaqueSimples.setText("Destaque simples");
         DestaqueSimples.setToolTipText("Clique para criar um destaque moderado");
+        DestaqueSimples.setEnabled(false);
         DestaqueSimples.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DestaqueSimplesActionPerformed(evt);
@@ -364,6 +364,7 @@ public class Chat extends javax.swing.JFrame {
         stIP = ServerIP.getText();
         stPorta = ServerPorta.getText();
         stNome = UserName.getText();
+        
         TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " entrou.");
         ServerIP.setEnabled(false);
         ServerPorta.setEnabled(false);
@@ -425,7 +426,10 @@ public class Chat extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        stIP = "xxx";
+        stPorta = "yyy";
+        stNome = "zzz";
+/* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

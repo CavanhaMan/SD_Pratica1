@@ -6,6 +6,9 @@ package exercicio1b;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
+import static exercicio1b.Chat.stIP;
+import static exercicio1b.Chat.stNome;
+import static exercicio1b.Chat.stPorta;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
@@ -15,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Cliente extends Thread {
+    static String testeIP, testePorta, testeNome;
     private static boolean done = false;
     private Socket conexao;
     static JTextField txtIP;
@@ -25,6 +29,13 @@ public class Cliente extends Thread {
     
     public static void main(String[] args){
      try {
+        testeIP=stIP;
+        testePorta=stPorta;
+        testeNome=stNome;
+        System.out.println(testeIP);
+        System.out.println(testePorta);
+        System.out.println(testeNome);
+        
         FileWriter arquivo = new FileWriter("d:/Server_Messenger_Report.txt");
         PrintWriter gravarArquivo = new PrintWriter(arquivo);
         
@@ -36,7 +47,7 @@ public class Cliente extends Thread {
         JOptionPane.showMessageDialog(null, texts);
         
         Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
-        //Socket conexao = new Socket(ClienteStart.ServerIP,Integer.parseInt(ClienteStart.ServerPorta));
+        //Socket conexao = new Socket(stIP.getText(),Integer.parseInt(stPorta.getText()));
         
         PrintStream saida = new PrintStream (conexao.getOutputStream());
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
