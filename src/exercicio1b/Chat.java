@@ -41,7 +41,7 @@ public class Chat extends javax.swing.JFrame {
         btLimpar2 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btEnviar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -53,7 +53,7 @@ public class Chat extends javax.swing.JFrame {
         UserName = new javax.swing.JTextField();
         btConecta = new javax.swing.JButton();
         btLimpa1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,11 +77,13 @@ public class Chat extends javax.swing.JFrame {
 
         cbEscolhePessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um destinatário..." }));
         cbEscolhePessoa.setToolTipText("Escolha uma pessoa para enviar uma mensagem privada");
+        cbEscolhePessoa.setEnabled(false);
 
         jLabel5.setText("Digite uma mensagem:");
 
         EntraMensagem.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         EntraMensagem.setToolTipText("Digite aqui sua mensagem");
+        EntraMensagem.setEnabled(false);
 
         Destaque.setText("Destaque");
         Destaque.setToolTipText("Clique para destacar o texto da mensagem");
@@ -98,6 +100,7 @@ public class Chat extends javax.swing.JFrame {
         });
 
         btLimpar2.setText("Limpar");
+        btLimpar2.setEnabled(false);
         btLimpar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpar2ActionPerformed(evt);
@@ -118,11 +121,12 @@ public class Chat extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/btenviar.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/btenviar.png"))); // NOI18N
+        btEnviar.setBorder(null);
+        btEnviar.setEnabled(false);
+        btEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btEnviarActionPerformed(evt);
             }
         });
 
@@ -150,7 +154,7 @@ public class Chat extends javax.swing.JFrame {
                                 .addComponent(Destaque))
                             .addComponent(EntraMensagem, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(3, 3, 3)
-                        .addComponent(jButton4))
+                        .addComponent(btEnviar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -181,7 +185,7 @@ public class Chat extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(EntraMensagem)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLimpar2)
@@ -264,10 +268,11 @@ public class Chat extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btSair.setText("Sair");
+        btSair.setEnabled(false);
+        btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btSairActionPerformed(evt);
             }
         });
 
@@ -287,7 +292,7 @@ public class Chat extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btConecta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(btSair))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -301,7 +306,7 @@ public class Chat extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLimpa1)
-                    .addComponent(jButton1)
+                    .addComponent(btSair)
                     .addComponent(btConecta))
                 .addContainerGap())
         );
@@ -359,10 +364,20 @@ public class Chat extends javax.swing.JFrame {
         stIP = ServerIP.getText();
         stPorta = ServerPorta.getText();
         stNome = UserName.getText();
-        TextoChat.setText(stIP + stPorta + stNome);
+        TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " entrou.");
         ServerIP.setEnabled(false);
         ServerPorta.setEnabled(false);
         UserName.setEnabled(false);
+        btLimpa1.setEnabled(false);
+        btConecta.setEnabled(false);
+        btSair.setEnabled(true);
+        cbEscolhePessoa.setEnabled(true);
+        DestaqueSimples.setEnabled(true);
+        Destaque.setEnabled(true);
+        btLimpar2.setEnabled(true);
+        btEnviar.setEnabled(true);
+        EntraMensagem.setEnabled(true);
+        cbEscolhePessoa.setEnabled(true);
     }//GEN-LAST:event_btConectaActionPerformed
 
     private void btLimpa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpa1ActionPerformed
@@ -377,11 +392,22 @@ public class Chat extends javax.swing.JFrame {
         Destaque.setSelected(false);
     }//GEN-LAST:event_btLimpar2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " saiu.");
         ServerIP.setEnabled(true);
         ServerPorta.setEnabled(true);
         UserName.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        btLimpa1.setEnabled(true);
+        btConecta.setEnabled(true);
+        btSair.setEnabled(false);
+        cbEscolhePessoa.setEnabled(false);
+        DestaqueSimples.setEnabled(false);
+        Destaque.setEnabled(false);
+        btLimpar2.setEnabled(false);
+        btEnviar.setEnabled(false);
+        EntraMensagem.setEnabled(false);
+        cbEscolhePessoa.setEnabled(false);
+    }//GEN-LAST:event_btSairActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
@@ -391,9 +417,9 @@ public class Chat extends javax.swing.JFrame {
         TextoChat.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarActionPerformed
         EntraMensagem.setText("");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,13 +466,13 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JTextArea TextoChat;
     private javax.swing.JTextField UserName;
     private javax.swing.JButton btConecta;
+    private javax.swing.JButton btEnviar;
     private javax.swing.JButton btLimpa1;
     private javax.swing.JButton btLimpar2;
+    private javax.swing.JButton btSair;
     private javax.swing.JComboBox<String> cbEscolhePessoa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
