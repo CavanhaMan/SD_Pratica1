@@ -1,5 +1,6 @@
 package exercicio1b;
 import javax.swing.ImageIcon;
+import exercicio1b.Cliente;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *
@@ -9,12 +10,11 @@ import javax.swing.ImageIcon;
 ***********************************************/
 public class Chat extends javax.swing.JFrame {
 //IMPLEMENTS RUNNABLE
+    String stIP, stPorta, stNome;
     /**
      * Creates new form ClienteChat
      */
-    public Chat() {
-        initComponents();
-    }
+    public Chat() {initComponents();}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,6 +356,10 @@ public class Chat extends javax.swing.JFrame {
     }//GEN-LAST:event_ServerIPActionPerformed
 
     private void btConectaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConectaActionPerformed
+        stIP = ServerIP.getText();
+        stPorta = ServerPorta.getText();
+        stNome = UserName.getText();
+        TextoChat.setText(stIP + stPorta + stNome);
         ServerIP.setEnabled(false);
         ServerPorta.setEnabled(false);
         UserName.setEnabled(false);
