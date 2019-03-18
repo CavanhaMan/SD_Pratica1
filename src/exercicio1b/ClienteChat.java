@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class ClienteChat extends javax.swing.JFrame {
 
     /**
-     * Creates new form ClienteChat
+     * Cria um novo form ClienteChat
      */
     public ClienteChat() {
         initComponents();

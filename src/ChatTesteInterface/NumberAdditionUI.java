@@ -7,7 +7,7 @@ package ChatTesteInterface;
 public class NumberAdditionUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form NumberAdditionUI
+     * Cria um novo form NumberAdditionUI
      */
     public NumberAdditionUI() {
         initComponents();

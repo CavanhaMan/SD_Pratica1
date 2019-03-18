@@ -12,7 +12,7 @@ package exercicio1a;
 public class Chat extends javax.swing.JPanel {
 
     /**
-     * Creates new form Chat
+     * Cria um novo form Chat
      */
     public Chat() {
         initComponents();

@@ -10,7 +10,7 @@ public class ClienteStart extends javax.swing.JFrame {
 
     public static String ServerIP, ServerPorta, UserName;
     /**
-     * Creates new form ClienteStart
+     * Cria um novo form ClienteStart
      */
     public ClienteStart() {initComponents();}
 

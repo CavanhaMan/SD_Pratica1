@@ -11,7 +11,7 @@ public class Chat extends javax.swing.JFrame {
 //IMPLEMENTS RUNNABLE
     static String stIP, stPorta, stNome;
     /**
-     * Creates new form ClienteChat
+     * Cria um novo form ClienteChat
      */
     public Chat() {initComponents();}
     /**
@@ -278,8 +278,7 @@ public class Chat extends javax.swing.JFrame {
                     .addComponent(btLimpa1)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btSair)
-                        .addComponent(btConecta)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(btConecta))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
