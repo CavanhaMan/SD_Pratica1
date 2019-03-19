@@ -1,4 +1,4 @@
-package ChatTesteGui;
+package testeee;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,14 +10,22 @@ import java.awt.event.*;
 public class ClientGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JLabel label;// will first hold "Username:", later on "Enter message"
-    private JTextField tf;// to hold the Username and later on the messages
-    private JTextField tfServer, tfPort;// to hold the server address an the port number
-    private JButton login, logout, whoIsIn;// to Logout and get the list of the users
-    private JTextArea ta;// for the chat room
-    private boolean connected;// if it is for connection
-    private Client client;// the Client object
-    private int defaultPort;// the default port number
+    // will first hold "Username:", later on "Enter message"
+    private JLabel label;
+    // to hold the Username and later on the messages
+    private JTextField tf;
+    // to hold the server address an the port number
+    private JTextField tfServer, tfPort;
+    // to Logout and get the list of the users
+    private JButton login, logout, whoIsIn;
+    // for the chat room
+    private JTextArea ta;
+    // if it is for connection
+    private boolean connected;
+    // the Client object
+    private Client client;
+    // the default port number
+    private int defaultPort;
     private String defaultHost;
 
     // Constructor connection receiving a socket number
