@@ -30,7 +30,7 @@ public class Cliente extends Thread {
     }
 
     private static void display(String msg) {
-        gui.append(msg + "\n");
+        //gui.append(msg + "\n");
     }
     /**
      *
@@ -83,14 +83,15 @@ public class Cliente extends Thread {
         BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String linha;
         while(true){
+            String msg;
             linha = entrada.readLine();
             if (linha.trim().equals("")){
-                System.out.println(exercicio1a.Color.RED + "Conxao encerrada em " + formatador.format(data));
+                msg = (exercicio1a.Color.RED + "Conxao encerrada em " + formatador.format(data));
+                //gui.append(msg);
                 break;
             }
-            System.out.println();
-            System.out.println(linha);
-            System.out.println(exercicio1a.Color.RESET + "...> ");
+            msg = linha;
+            //gui.append(msg);
         }
         done=true;
             

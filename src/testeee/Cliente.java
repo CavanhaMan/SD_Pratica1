@@ -3,31 +3,30 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class Client  {
+public class Cliente  {
 
     private ObjectInputStream sInput;  // to read from the socket
     private ObjectOutputStream sOutput;// to write on the socket
     private Socket socket;
 
-    private ClientGUI cg;
+    private ClienteGUI cg;
     
-    private String server, username;
-    private int port;
+    private String strIP, strNome, strPorta;
 
-    Client(String server, int port, String username) {
-        this(server, port, username, null);
+    Cliente(String strIP, String strPorta, String strNome) {
+        this(strIP, strPorta, strNome, null);
     }
 
-    Client(String server, int port, String username, ClientGUI cg) {
-        this.server = server;
-        this.port = port;
-        this.username = username;
+    Cliente(String strIP, String strPorta, String strNome, ClienteGUI cg) {
+        this.strIP = strIP;
+        this.strPorta = strPorta;
+        this.strNome = strNome;
         this.cg = cg;
     }
     
     public boolean start() {
         try {
-            socket = new Socket(server, port);
+            socket = new Socket(strIP, Integer.parseInt(strPorta));
         
             String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
             display(msg);
@@ -35,11 +34,11 @@ public class Client  {
             sInput  = new ObjectInputStream(socket.getInputStream());
             sOutput = new ObjectOutputStream(socket.getOutputStream());
 
-            // creates the Thread to listen from the server 
+            // creates the Thread to listen from the strIP 
             new ListenFromServer().start();
-            // Send our username to the server this is the only message that we
+            // Send our strNome to the strIP this is the only message that we
             // will send as a String. All other messages will be ChatMessage objects
-            sOutput.writeObject(username);
+            sOutput.writeObject(strNome);
         }
         catch (IOException eIO) {
             display("Exception: " + eIO);
@@ -55,18 +54,18 @@ public class Client  {
         if(cg == null)
             System.out.println(msg);    // println in console mode
         else
-            cg.append(msg + "\n");      // append to the ClientGUI JTextArea (or whatever)
+            cg.append(msg + "\n");      // append to the ClienteGUI JTextArea (or whatever)
     }
     
     /*
-     * To send a message to the server
+     * To send a message to the strIP
      */
     void sendMessage(ChatMessage msg) {
         try {
             sOutput.writeObject(msg);
         }
         catch(IOException e) {
-            display("Exception writing to server: " + e);
+            display("Exception writing to strIP: " + e);
         }
     }
 
@@ -88,18 +87,18 @@ public class Client  {
             
     }
     /*
-     * To start the Client in console mode use one of the following command
-     * > java Client
-     * > java Client username
-     * > java Client username portNumber
-     * > java Client username portNumber serverAddress
+     * To start the Cliente in console mode use one of the following command
+     * > java Cliente
+     * > java Cliente strNome
+     * > java Cliente strNome strPortaNumber
+     * > java Cliente strNome strPortaNumber strIPAddress
      * at the console prompt
-     * If the portNumber is not specified 1500 is used
-     * If the serverAddress is not specified "localHost" is used
-     * If the username is not specified "Anonymous" is used
-     * > java Client 
+     * If the strPortaNumber is not specified 1500 is used
+     * If the strIPAddress is not specified "localHost" is used
+     * If the strNome is not specified "Anonymous" is used
+     * > java Cliente 
      * is equivalent to
-     * > java Client Anonymous 1500 localhost 
+     * > java Cliente Anonymous 1500 localhost 
      * are eqquivalent
      * 
      * In console mode, if an error occurs the program simply stops
@@ -107,26 +106,26 @@ public class Client  {
      */
     public static void main(String[] args) {
         // default values
-        int portNumber = 1500;
-        String serverAddress = "localhost";
+        String strPortaNumber = "1500";
+        String strIPAddress = "localhost";
         String userName = "Anonymous";
 
         // depending of the number of arguments provided we fall through
         switch(args.length) {
-            case 3:// > javac Client username portNumber serverAddr
-                serverAddress = args[2];
-            case 2:// > javac Client username portNumber
-                portNumber = Integer.parseInt(args[1]);
-            case 1: // > javac Client username
+            case 3:// > javac Cliente strNome strPortaNumber strIPAddr
+                strIPAddress = args[2];
+            case 2:// > javac Cliente strNome strPortaNumber
+                strPortaNumber = args[1];
+            case 1: // > javac Cliente strNome
                 userName = args[0];
-            case 0:// > java Client
+            case 0:// > java Cliente
                 break;
             default:// invalid number of arguments
-                System.out.println("Usage is: > java Client [username] [portNumber] {serverAddress]");
+                System.out.println("Usage is: > java Client [strNome] [strPortaNumber] {strIPAddress]");
             return;
         }
-        // create the Client object
-        Client client = new Client(serverAddress, portNumber, userName);
+        // create the Cliente object
+        Cliente client = new Cliente(strIPAddress, strPortaNumber, userName);
         // test if we can start the connection to the Server
         // if it failed nothing we can do
         if(!client.start())
@@ -153,7 +152,7 @@ public class Client  {
     }
 
     /*
-     * a class that waits for the message from the server and append them to the JTextArea
+     * a class that waits for the message from the strIP and append them to the JTextArea
      * if we have a GUI or simply System.out.println() it in console mode
      */
     class ListenFromServer extends Thread {

@@ -5,9 +5,9 @@ import java.awt.event.*;
 
 
 /*
- * The Client with its GUI
+ * The Cliente with its GUI
  */
-public class ClientGUI extends JFrame implements ActionListener {
+public class ClienteGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     // will first hold "Username:", later on "Enter message"
@@ -22,14 +22,14 @@ public class ClientGUI extends JFrame implements ActionListener {
     private JTextArea ta;
     // if it is for connection
     private boolean connected;
-    // the Client object
-    private Client client;
+    // the Cliente object
+    private Cliente client;
     // the default port number
     private int defaultPort;
     private String defaultHost;
 
     // Constructor connection receiving a socket number
-    ClientGUI(String host, int port) {
+    ClienteGUI(String host, int port) {
 
         super("Chat Client");
         defaultPort = port;
@@ -90,7 +90,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 
     }
 
-    // called by the Client to append text in the TextArea 
+    // called by the Cliente to append text in the TextArea 
     void append(String str) {
         ta.append(str);
         ta.setCaretPosition(ta.getText().length() - 1);
@@ -153,17 +153,17 @@ public class ClientGUI extends JFrame implements ActionListener {
             String portNumber = tfPort.getText().trim();
             if(portNumber.length() == 0)
                 return;
-                int port = 0;
+                String port = "";
             try {
-                port = Integer.parseInt(portNumber);
+                port = portNumber;
             }
             catch(Exception en) {
                 return;   // nothing I can do if port number is not valid
             }
 
-            // try creating a new Client with GUI
-            client = new Client(server, port, username, this);
-            // test if we can start the Client
+            // try creating a new Cliente with GUI
+            client = new Cliente(server, port, username, this);
+            // test if we can start the Cliente
             if(!client.start()) 
                 return;
             tf.setText("");
@@ -186,7 +186,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 
     // to start the whole thing the server
     public static void main(String[] args) {
-        new ClientGUI("localhost", 1500);
+        new ClienteGUI("localhost", 1500);
     }
 
 }

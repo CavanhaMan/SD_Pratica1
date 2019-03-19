@@ -7,10 +7,10 @@ import java.util.*;
 /*
  * The server that can be run both as a console application or a GUI
  */
-public class Server {
+public class Servidor {
     private static int uniqueId;        // a unique ID for each connection
     private ArrayList<ClientThread> al; // an ArrayList to keep the list of the Client
-    private ServerGUI sg;               // if I am in a GUI
+    private ServidorGUI sg;               // if I am in a GUI
     private SimpleDateFormat sdf;       // to display time
     private int port;                   // the port number to listen for connection
     private boolean keepGoing;          // the boolean that will be turned of to stop the server
@@ -19,11 +19,11 @@ public class Server {
      *  server constructor that receive the port to listen to for connection as parameter
      *  in console
      */
-    public Server(int port) {
+    public Servidor(int port) {
         this(port, null);
     }
     
-    public Server(int port, ServerGUI sg) {
+    public Servidor(int port, ServidorGUI sg) {
         this.sg = sg;                           // GUI or not
         this.port = port;                       // the port
         sdf = new SimpleDateFormat("HH:mm:ss"); // to display hh:mm:ss
@@ -135,8 +135,8 @@ public class Server {
     
     /*
      *  To run as a console application just open a console window and: 
-     * > java Server
-     * > java Server portNumber
+     * > java Servidor
+     * > java Servidor portNumber
      * If the port number is not specified 1500 is used
      */ 
     public static void main(String[] args) {
@@ -160,7 +160,7 @@ public class Server {
                 
         }
         // create a server object and start it
-        Server server = new Server(portNumber);
+        Servidor server = new Servidor(portNumber);
         server.start();
     }
 

@@ -1,5 +1,6 @@
-package exercicio1c;
+package exercicio1d;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,28 +13,14 @@ import javax.swing.JOptionPane;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-public class ClienteGUI extends javax.swing.JFrame implements ActionListener, KeyListener {
+public class Chat extends javax.swing.JFrame implements ActionListener, KeyListener {
 
 //IMPLEMENTS RUNNABLE
     static String stIP, stPorta, stNome;
-    private int defaultPort;
-    private String defaultHost;
-    private Cliente cliente;// the Client object
-
     /**
      * Cria um novo form ClienteChat
      */
-    public ClienteGUI(String host, String port) {
-        super("Chat Client");
-        defaultPort = Integer.parseInt(port);
-        defaultHost = host;
-
-        initComponents();
-    }
-
-    private ClienteGUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Chat() {initComponents();}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +65,7 @@ public class ClienteGUI extends javax.swing.JFrame implements ActionListener, Ke
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("IFTM Chat");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1c/logoiftmtp.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/logoiftmtp.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Chat"));
 
@@ -129,7 +116,7 @@ public class ClienteGUI extends javax.swing.JFrame implements ActionListener, Ke
             }
         });
 
-        btEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1c/btenviar.png"))); // NOI18N
+        btEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/btenviar.png"))); // NOI18N
         btEnviar.setBorder(null);
         btEnviar.setEnabled(false);
         btEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -442,23 +429,21 @@ public class ClienteGUI extends javax.swing.JFrame implements ActionListener, Ke
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteGUI().setVisible(true);
+                new Chat().setVisible(true);
             }
         });
     }

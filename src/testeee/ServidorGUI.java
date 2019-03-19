@@ -6,7 +6,7 @@ import java.awt.event.*;
 /*
  * The server as a GUI
  */
-public class ServerGUI extends JFrame implements ActionListener, WindowListener {
+public class ServidorGUI extends JFrame implements ActionListener, WindowListener {
     
     private static final long serialVersionUID = 1L;
     // the stop and start buttons
@@ -16,11 +16,11 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     // The port number
     private JTextField tPortNumber;
     // my server
-    private Server server;
+    private Servidor server;
     
     
     // server constructor that receive the port to listen to for connection as parameter
-    ServerGUI(int port) {
+    ServidorGUI(int port) {
         super("Chat Server");
         server = null;
         // in the NorthPanel the PortNumber the Start and Stop buttons
@@ -83,18 +83,18 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
             appendEvent("Invalid port number");
             return;
         }
-        // ceate a new Server
-        server = new Server(port, this);
+        // ceate a new Servidor
+        server = new Servidor(port, this);
         // and start it as a thread
         new ServerRunning().start();
         stopStart.setText("Stop");
         tPortNumber.setEditable(false);
     }
     
-    // entry point to start the Server
+    // entry point to start the Servidor
     public static void main(String[] arg) {
         // start server default port 1500
-        new ServerGUI(1500);
+        new ServidorGUI(1500);
     }
 
     /*
@@ -102,7 +102,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
      * I need to close the connection with the server to free the port
      */
     public void windowClosing(WindowEvent e) {
-        // if my Server exist
+        // if my Servidor exist
         if(server != null) {
             try {
                 server.stop();          // ask the server to close the conection
@@ -124,7 +124,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     public void windowDeactivated(WindowEvent e) {}
 
     /*
-     * A thread to run the Server
+     * A thread to run the Servidor
      */
     class ServerRunning extends Thread {
         public void run() {
