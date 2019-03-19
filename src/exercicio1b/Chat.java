@@ -1,5 +1,11 @@
 package exercicio1b;
-import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
 *                    IFTM                     *
@@ -7,7 +13,8 @@ import javax.swing.ImageIcon;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-public class Chat extends javax.swing.JFrame {
+public class Chat extends javax.swing.JFrame implements ActionListener, KeyListener {
+
 //IMPLEMENTS RUNNABLE
     static String stIP, stPorta, stNome;
     /**
@@ -27,8 +34,6 @@ public class Chat extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextoChat = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         cbEscolhePessoa = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -39,6 +44,8 @@ public class Chat extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btEnviar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextoChat = new javax.swing.JEditorPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -61,13 +68,6 @@ public class Chat extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/logoiftmtp.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Chat"));
-
-        TextoChat.setEditable(false);
-        TextoChat.setColumns(20);
-        TextoChat.setRows(5);
-        TextoChat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        TextoChat.setFocusable(false);
-        jScrollPane1.setViewportView(TextoChat);
 
         jLabel3.setText("Mensagem privada");
 
@@ -125,11 +125,15 @@ public class Chat extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        TextoChat.setEditable(false);
+        jScrollPane1.setViewportView(TextoChat);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addComponent(cbEscolhePessoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -151,6 +155,7 @@ public class Chat extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,21 +339,32 @@ public class Chat extends javax.swing.JFrame {
         stIP = ServerIP.getText();
         stPorta = ServerPorta.getText();
         stNome = UserName.getText();
-        
-        TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " entrou.");
-        ServerIP.setEnabled(false);
-        ServerPorta.setEnabled(false);
-        UserName.setEnabled(false);
-        btLimpa1.setEnabled(false);
-        btConecta.setEnabled(false);
-        btSair.setEnabled(true);
-        cbEscolhePessoa.setEnabled(true);
-        DestaqueSimples.setEnabled(true);
-        Destaque.setEnabled(true);
-        btLimpar2.setEnabled(true);
-        btEnviar.setEnabled(true);
-        EntraMensagem.setEnabled(true);
-        cbEscolhePessoa.setEnabled(true);
+        if (stNome.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha corretamente o nome do usuário!", "ALERTA! INFORMAÇÕES INCOMPLETAS!", JOptionPane.ERROR_MESSAGE, null);
+        }
+        else{
+            String TextoCor;
+            TextoCor = TextoChat.getText();
+            //Font font = new Font("Segoe Script", Font.PLAIN, 10);
+            //TextoChat.setFont(font);
+            //appendToPane(TextoChat, "\nUsuário " + stNome + " entrou.", Color.RED);
+            TextoChat.setForeground(Color.BLUE);
+            TextoChat.setText(TextoCor + "\nUsuário " + stNome + " entrou.");
+            //TextoChat.append("\nUsuário " + stNome + " entrou.");
+            ServerIP.setEnabled(false);
+            ServerPorta.setEnabled(false);
+            UserName.setEnabled(false);
+            btLimpa1.setEnabled(false);
+            btConecta.setEnabled(false);
+            btSair.setEnabled(true);
+            cbEscolhePessoa.setEnabled(true);
+            DestaqueSimples.setEnabled(true);
+            Destaque.setEnabled(true);
+            btLimpar2.setEnabled(true);
+            btEnviar.setEnabled(true);
+            EntraMensagem.setEnabled(true);
+            cbEscolhePessoa.setEnabled(true);
+        }
     }//GEN-LAST:event_btConectaActionPerformed
 
     private void btLimpa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpa1ActionPerformed
@@ -364,6 +380,7 @@ public class Chat extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimpar2ActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        TextoChat.setForeground(Color.RED);
         TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " saiu.");
         ServerIP.setEnabled(true);
         ServerPorta.setEnabled(true);
@@ -437,7 +454,7 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JTextField EntraMensagem;
     private javax.swing.JTextField ServerIP;
     private javax.swing.JTextField ServerPorta;
-    private javax.swing.JTextArea TextoChat;
+    private javax.swing.JEditorPane TextoChat;
     private javax.swing.JTextField UserName;
     private javax.swing.JButton btConecta;
     private javax.swing.JButton btEnviar;
@@ -460,4 +477,25 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

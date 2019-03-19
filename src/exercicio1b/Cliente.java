@@ -6,32 +6,25 @@ package exercicio1b;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-import static exercicio1b.Chat.stIP;
-import static exercicio1b.Chat.stNome;
-import static exercicio1b.Chat.stPorta;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class Cliente extends Thread {
     static String testeIP, testePorta, testeNome;
     private static boolean done = false;
     private Socket conexao;
-    static JTextField txtIP;
-    static JTextField txtPorta;
-    static JTextField txtNome;
 
     public Cliente (Socket s){conexao = s;}
     
     public static void main(String[] args){
      try {
-        testeIP=stIP;
-        testePorta=stPorta;
-        testeNome=stNome;
+        testeIP=Chat.stIP;
+        testePorta=Chat.stPorta;
+        testeNome=Chat.stNome;
         System.out.println(testeIP);
         System.out.println(testePorta);
         System.out.println(testeNome);
@@ -40,19 +33,16 @@ public class Cliente extends Thread {
         PrintWriter gravarArquivo = new PrintWriter(arquivo);
         
         JLabel lblMessage = new JLabel("Configurar os dados de conexão:");
-        txtIP = new JTextField("127.0.0.1");   
-        txtPorta = new JTextField("2000");
-        txtNome = new JTextField("");
-        Object[] texts = {lblMessage, txtIP, txtPorta, txtNome};
+        Object[] texts = {lblMessage, testeIP, testePorta, testeNome};
         JOptionPane.showMessageDialog(null, texts);
         
-        Socket conexao = new Socket(txtIP.getText(),Integer.parseInt(txtPorta.getText()));
+        Socket conexao = new Socket(testeIP,Integer.parseInt(testePorta));
         //Socket conexao = new Socket(stIP.getText(),Integer.parseInt(stPorta.getText()));
         
         PrintStream saida = new PrintStream (conexao.getOutputStream());
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
         
-        System.out.println(Color.GREEN + "Seja bem vindo " + txtNome.getText() + "!");
+        System.out.println(aColor.GREEN + "Seja bem vindo " + testeNome + "!");
         
         Thread t = new Cliente(conexao); //aqui eu crio a THREAD
         t.start();                       //aqui eu starto a THREAD

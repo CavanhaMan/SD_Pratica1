@@ -6,7 +6,7 @@ package exercicio1b;
 ***********************************************
 * Classe para implementar cores nas mensagens *
 ***********************************************/
-public class Color {
+public class aColor {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
 

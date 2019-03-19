@@ -34,10 +34,10 @@ public class Servidor extends Thread {
         clientes = new ArrayList();
         ServerSocket s = new ServerSocket(2000);
 
-        System.out.println(Color.BLUE + Color.CYAN_BACKGROUND + "___Servidor ativo!_______________________");
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Serviço iniciado em " + formatador.format( data ));
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Porta: 2000");
-        System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "IP: " + InetAddress.getLocalHost().getHostAddress());
+        System.out.println(aColor.BLUE + aColor.CYAN_BACKGROUND + "___Servidor ativo!_______________________");
+        System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Serviço iniciado em " + formatador.format( data ));
+        System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Porta: 2000");
+        System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "IP: " + InetAddress.getLocalHost().getHostAddress());
         
         gravarArquivo.append("\n___Servidor ativo!_______________________");
         gravarArquivo.append("\nServiço iniciado em " + formatador.format( data ));
@@ -51,12 +51,12 @@ public class Servidor extends Thread {
             endereco_remoto = conexao.getInetAddress();
             porta_remota = conexao.getPort();
 
-            System.out.println(Color.BLUE + Color.CYAN_BACKGROUND + "___Novo cliente conectado!_______________");
-            System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Conexão iniciada em " + formatador.format( data ));
-            //System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Nome do usuário: " + nomeCli);
-            System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Nome da maqina remota: " + endereco_remoto.getHostName());
-            System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "IP da maqina remota: " + endereco_remoto.getHostAddress());
-            System.out.println(Color.BLUE + Color.YELLOW_BACKGROUND + "Porta da maqina remota: " + porta_remota);
+            System.out.println(aColor.BLUE + aColor.CYAN_BACKGROUND + "___Novo cliente conectado!_______________");
+            System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Conexão iniciada em " + formatador.format( data ));
+            //System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Nome do usuário: " + nomeCli);
+            System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Nome da maqina remota: " + endereco_remoto.getHostName());
+            System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "IP da maqina remota: " + endereco_remoto.getHostAddress());
+            System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Porta da maqina remota: " + porta_remota);
             
             gravarArquivo.append("\n___Novo cliente conectado!_______________");
             gravarArquivo.append("\nConexão iniciada em " + formatador.format( data ));
@@ -71,7 +71,7 @@ public class Servidor extends Thread {
             t.start();
         }
       } catch (IOException ex) {
-        System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+        System.out.println(aColor.RED_BOLD + aColor.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
      }
     }
     
@@ -97,7 +97,7 @@ public class Servidor extends Thread {
         conexao.close();
             
       } catch (IOException ex) {
-        System.out.println(Color.RED_BOLD + Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+        System.out.println(aColor.RED_BOLD + aColor.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
      }
     }
     //saida => remetente
@@ -110,7 +110,7 @@ public class Servidor extends Thread {
             System.out.println(chat);
             if (chat != saida)
                 chat.println(meuNome + acao + linha);
-            if (acao.equalsIgnoreCase(Color.RED + " saiu "))
+            if (acao.equalsIgnoreCase(aColor.RED + " saiu "))
                 if (chat == saida)
                     chat.println("");
         }
