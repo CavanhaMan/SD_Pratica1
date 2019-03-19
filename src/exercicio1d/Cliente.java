@@ -6,6 +6,7 @@ package exercicio1d;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
+import java.awt.Color;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
@@ -22,9 +23,9 @@ public class Cliente extends Thread {
     
     public static void main(String[] args){
      try {
-        testeIP=Chat.stIP;
-        testePorta=Chat.stPorta;
-        testeNome=Chat.stNome;
+        testeIP=Chat.strIP;
+        testePorta=Chat.strPorta;
+        testeNome=Chat.strNome;
         System.out.println(testeIP);
         System.out.println(testePorta);
         System.out.println(testeNome);
@@ -42,7 +43,7 @@ public class Cliente extends Thread {
         PrintStream saida = new PrintStream (conexao.getOutputStream());
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
         
-        System.out.println(aColor.GREEN + "Seja bem vindo " + testeNome + "!");
+        System.out.println(Color.GREEN + "Seja bem vindo " + testeNome + "!");
         
         Thread t = new Cliente(conexao); //aqui eu crio a THREAD
         t.start();                       //aqui eu starto a THREAD

@@ -5,6 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 /**********************************************
 *             Rodrigo  CavanhaMan             *
@@ -16,7 +29,9 @@ import javax.swing.JOptionPane;
 public class Chat extends javax.swing.JFrame implements ActionListener, KeyListener {
 
 //IMPLEMENTS RUNNABLE
-    static String stIP, stPorta, stNome;
+    static String strIP, strPorta, strNome;
+    private Socket socket;
+
     /**
      * Cria um novo form ClienteChat
      */
@@ -44,8 +59,8 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btEnviar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextoChat = new javax.swing.JEditorPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TelaChat = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -125,10 +140,9 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
             }
         });
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        TextoChat.setEditable(false);
-        jScrollPane1.setViewportView(TextoChat);
+        TelaChat.setColumns(20);
+        TelaChat.setRows(5);
+        jScrollPane2.setViewportView(TelaChat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,12 +169,12 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -336,34 +350,47 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
     }//GEN-LAST:event_ServerIPActionPerformed
 
     private void btConectaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConectaActionPerformed
-        stIP = ServerIP.getText();
-        stPorta = ServerPorta.getText();
-        stNome = UserName.getText();
-        if (stNome.equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Por favor preencha corretamente o nome do usuário!", "ALERTA! INFORMAÇÕES INCOMPLETAS!", JOptionPane.ERROR_MESSAGE, null);
-        }
-        else{
-            String TextoCor;
-            TextoCor = TextoChat.getText();
-            //Font font = new Font("Segoe Script", Font.PLAIN, 10);
-            //TextoChat.setFont(font);
-            //appendToPane(TextoChat, "\nUsuário " + stNome + " entrou.", Color.RED);
-            TextoChat.setForeground(Color.BLUE);
-            TextoChat.setText(TextoCor + "\nUsuário " + stNome + " entrou.");
-            //TextoChat.append("\nUsuário " + stNome + " entrou.");
-            ServerIP.setEnabled(false);
-            ServerPorta.setEnabled(false);
-            UserName.setEnabled(false);
-            btLimpa1.setEnabled(false);
-            btConecta.setEnabled(false);
-            btSair.setEnabled(true);
-            cbEscolhePessoa.setEnabled(true);
-            DestaqueSimples.setEnabled(true);
-            Destaque.setEnabled(true);
-            btLimpar2.setEnabled(true);
-            btEnviar.setEnabled(true);
-            EntraMensagem.setEnabled(true);
-            cbEscolhePessoa.setEnabled(true);
+        try {
+            strIP = ServerIP.getText();
+            strPorta = ServerPorta.getText();
+            strNome = UserName.getText();
+
+            if (strNome.equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Por favor preencha corretamente o nome do usuário!", "ALERTA! INFORMAÇÕES INCOMPLETAS!", JOptionPane.ERROR_MESSAGE, null);
+            }
+            else{
+                System.out.println(aColor.BLUE + aColor.CYAN_BACKGROUND + "Cliente ativo!_______________________");
+                System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Porta: " + strIP);
+                System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "IP: " + strPorta);
+                System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Usuário: " + strNome);
+
+                Socket socket = new Socket(strIP,Integer.parseInt(strPorta));
+                PrintStream saida = new PrintStream (socket.getOutputStream());
+                BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println(aColor.GREEN + "Seja bem vindo " + strNome + "!");
+
+                //Font font = new Font("Segoe Script", Font.PLAIN, 10);
+                //TelaChat.setFont(font);
+                //appendToPane(TelaChat, "\nUsuário " + strNome + " entrou.", Color.RED);
+                TelaChat.setForeground(Color.BLUE);
+                TelaChat.append("\nUsuário " + strNome + " entrou.");
+                //TelaChat.append("\nUsuário " + strNome + " entrou.");
+                ServerIP.setEnabled(false);
+                ServerPorta.setEnabled(false);
+                UserName.setEnabled(false);
+                btLimpa1.setEnabled(false);
+                btConecta.setEnabled(false);
+                btSair.setEnabled(true);
+                cbEscolhePessoa.setEnabled(true);
+                DestaqueSimples.setEnabled(true);
+                Destaque.setEnabled(true);
+                btLimpar2.setEnabled(true);
+                btEnviar.setEnabled(true);
+                EntraMensagem.setEnabled(true);
+                cbEscolhePessoa.setEnabled(true);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btConectaActionPerformed
 
@@ -380,8 +407,11 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
     }//GEN-LAST:event_btLimpar2ActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        TextoChat.setForeground(Color.RED);
-        TextoChat.setText(TextoChat.getText() + "\nUsuário " + stNome + " saiu.");
+        System.out.println(aColor.RED + aColor.CYAN_BACKGROUND + "Cliente saiu!________________________");
+        System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Usuário: " + strNome);
+
+        TelaChat.setForeground(Color.RED);
+        TelaChat.append("\nUsuário " + strNome + " saiu.");
         ServerIP.setEnabled(true);
         ServerPorta.setEnabled(true);
         UserName.setEnabled(true);
@@ -402,10 +432,11 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TextoChat.setText("");
+        TelaChat.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarActionPerformed
+        TelaChat.append("\n" + EntraMensagem.getText());
         EntraMensagem.setText("");
     }//GEN-LAST:event_btEnviarActionPerformed
 
@@ -413,39 +444,53 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        stIP = "xxx";
-        stPorta = "yyy";
-        stNome = "zzz";
-/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        FileWriter arquivo = null;
+
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            arquivo = new FileWriter("d:/Server_Messenger_Report.txt");
+            PrintWriter gravarArquivo = new PrintWriter(arquivo);
+            
+            
+            /* Set the Nimbus look and feel */
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+            * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+            */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //</editor-fold>
+            //</editor-fold>
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Chat().setVisible(true);
+                }
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                arquivo.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Chat().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -454,7 +499,7 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
     private javax.swing.JTextField EntraMensagem;
     private javax.swing.JTextField ServerIP;
     private javax.swing.JTextField ServerPorta;
-    private javax.swing.JEditorPane TextoChat;
+    private javax.swing.JTextArea TelaChat;
     private javax.swing.JTextField UserName;
     private javax.swing.JButton btConecta;
     private javax.swing.JButton btEnviar;
@@ -475,7 +520,7 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -498,4 +543,69 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+public class Cliente extends Thread {
+    private boolean done = false;
+    private Socket socket;
+
+    public Cliente (Socket s){socket = s;}
+    
+    public void main(String[] args){
+     try {
+        Socket socket = new Socket(strIP,Integer.parseInt(strPorta));
+        System.out.println("2");
+        System.out.println(strIP);
+        System.out.println(strPorta);
+        System.out.println(strNome);
+        
+        PrintStream saida = new PrintStream (socket.getOutputStream());
+        BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
+        
+        System.out.println(Color.GREEN + "Seja bem vindo " + strNome + "!");
+        
+        Thread t = new Cliente(socket); //aqui eu crio a THREAD
+        t.start();                       //aqui eu starto a THREAD
+        String linha;
+        
+        while(true){
+            if(done)
+                break;
+            System.out.print(exercicio1a.Color.RESET + "> ");
+            linha = teclado.readLine();
+            saida.println(linha);
+        }
+      } catch (IOException ex) {
+        System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+      }
+    }
+    
+    public void run(){
+     try { 
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        //formatador.format( data );
+        
+        BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String linha;
+        while(true){
+            linha = entrada.readLine();
+            if (linha.trim().equals("")){
+                System.out.println(exercicio1a.Color.RED + "Conxao encerrada em " + formatador.format(data));
+                break;
+            }
+            System.out.println();
+            System.out.println(linha);
+            System.out.println(exercicio1a.Color.RESET + "...> ");
+        }
+        done=true;
+            
+      } catch (IOException ex) {
+        System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
+     }
+    }
+    void append(String str) {
+        TelaChat.append(str);
+        TelaChat.setCaretPosition(TelaChat.getText().length() - 1);
+    }
+
+ }
 }

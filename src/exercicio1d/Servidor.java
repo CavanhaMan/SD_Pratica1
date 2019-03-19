@@ -45,7 +45,7 @@ public class Servidor extends Thread {
         gravarArquivo.append("\nIP: " + InetAddress.getLocalHost().getHostAddress());
             
         while(true){
-            System.out.println("___Aguardando conexao____________________");
+            System.out.println(aColor.RED_BACKGROUND + "___Aguardando conexao____________________");
             Socket conexao = s.accept();
             
             endereco_remoto = conexao.getInetAddress();
