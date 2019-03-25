@@ -20,7 +20,7 @@ public class Cliente {
     //formatador.format( data );
 
     //primeiro passo é criar o socket usando localhost ou 127.0.0.1 através da porta 8080 ou outra porta qualquer (no caso 2000).
-    Socket conexao = new Socket("localhost",2001);//trocar localhost para outro ip ou host qq
+    Socket conexao = new Socket("localhost",2000);//trocar localhost para outro ip ou host qq
             
     //agora criamos os 2 canais - in e out
     DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());

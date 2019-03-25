@@ -602,10 +602,10 @@ public class Cliente extends Thread {
         System.out.println(exercicio1a.Color.RED_BOLD + exercicio1a.Color.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());
      }
     }
-    void append(String str) {
+/*    void append(String str) {
         TelaChat.append(str);
         TelaChat.setCaretPosition(TelaChat.getText().length() - 1);
     }
-
+*/
  }
 }
