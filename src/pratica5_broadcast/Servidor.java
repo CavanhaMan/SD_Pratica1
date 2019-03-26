@@ -20,7 +20,7 @@ public class Servidor {
             DatagramPacket recebe = new DatagramPacket(new byte[512],512);
             while(true){
                 s.receive(recebe);
-                System.out.print("Mensagem recebida: ");
+                System.out.print(aColor.BLUE + "Mensagem recebida: ");
                 for(int i=0 ; i<recebe.getLength() ; i++)
                     System.out.print((char)recebe.getData()[i]);
                 System.out.println();
@@ -32,3 +32,11 @@ public class Servidor {
         } catch (IOException ex) {System.out.println(aColor.RED_BOLD + aColor.YELLOW_BACKGROUND + "ERRO: " + ex.getMessage());}
     }
 }
+//https://docs.oracle.com/javase/tutorial/networking/datagrams/broadcasting.html
+//https://www.baeldung.com/java-broadcast-multicast
+//https://www.guj.com.br/t/broadcast-resolvido/130238
+//https://notepad.pw/keilane
+
+//CRIAR INTERFACE GRAFICA:
+//BOTAO ENVIAR MONTA O BUFFER E MONTA O DATAGRAMA
+//BOTAO SAIR FAZ O S.CLOSE();

@@ -14,7 +14,7 @@ public class Cliente {
     public static void main(String[] args)  {
         try {
             DatagramSocket s = new DatagramSocket();
-            InetAddress dest = InetAddress.getByName("localhost"); //getByAddress("127.0.0.1");
+            InetAddress dest = InetAddress.getByName("127.0.0.1"); //getByAddress();
             String envio;
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("> ");
