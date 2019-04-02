@@ -17,7 +17,7 @@ public class Servidor {
             System.out.println(aColor.BLUE + aColor.CYAN_BACKGROUND + "___Servidor ativo!_________________");
             System.out.println(aColor.BLUE + aColor.YELLOW_BACKGROUND + "Servidor aguardando mensagem");
             
-            DatagramPacket recebe = new DatagramPacket(new byte[512],512);
+            DatagramPacket recebe = new DatagramPacket(new byte[5000],5000);
             while(true){
                 s.receive(recebe);
                 System.out.print(aColor.BLUE + "Mensagem recebida: ");
