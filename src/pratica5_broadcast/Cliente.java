@@ -5,7 +5,7 @@ package pratica5_broadcast;
 * Sistemas Distribuídos *
 *************************
 * SOCKETS USANDO UDP/IP *
-******************tese*******/
+*************************/
 import java.io.*;
 import java.net.*;
 import java.util.*;
