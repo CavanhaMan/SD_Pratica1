@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
 ***********************************************
 *Chat Multithread com Socket e Janelas em Java*
 ***********************************************/
-public class Chat extends javax.swing.JFrame implements ActionListener, KeyListener {
+public class TelaChat extends javax.swing.JFrame implements ActionListener, KeyListener {
 
 //IMPLEMENTS RUNNABLE
     static String stIP, stPorta, stNome;
     /**
      * Cria um novo form ClienteChat
      */
-    public Chat() {initComponents();}
+    public TelaChat() {initComponents();}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,7 +65,7 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("IFTM Chat");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/img/iflogo.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("D:\\Cavanha\\ChatSocketSwing\\src\\img\\iflogo.png")); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Chat"));
 
@@ -116,7 +116,7 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
             }
         });
 
-        btEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exercicio1b/img/btenviar.png"))); // NOI18N
+        btEnviar.setIcon(new javax.swing.ImageIcon("D:\\Cavanha\\ChatSocketSwing\\src\\img\\btenviar.png")); // NOI18N
         btEnviar.setBorder(null);
         btEnviar.setEnabled(false);
         btEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -429,21 +429,23 @@ public class Chat extends javax.swing.JFrame implements ActionListener, KeyListe
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chat().setVisible(true);
+                new TelaChat().setVisible(true);
             }
         });
     }

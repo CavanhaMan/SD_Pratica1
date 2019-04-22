@@ -86,7 +86,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/exercicio1b/img/iflogo.png"/>
+          <Image iconType="2" name="D:\Cavanha\ChatSocketSwing\src\img\iflogo.png"/>
         </Property>
       </Properties>
     </Component>
@@ -245,7 +245,7 @@
         <Component class="javax.swing.JButton" name="btEnviar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/exercicio1b/img/btenviar.png"/>
+              <Image iconType="2" name="D:\Cavanha\ChatSocketSwing\src\img\btenviar.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
