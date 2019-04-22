@@ -9,8 +9,6 @@ package pratica6;
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
         
 public class CalcServer extends UnicastRemoteObject implements Calc{
     public CalcServer() throws RemoteException{
@@ -20,10 +18,10 @@ public class CalcServer extends UnicastRemoteObject implements Calc{
         try {
             LocateRegistry.createRegistry(2335);
             CalcServer f = new CalcServer();
-            Naming.rebind("//localhost")
-        } catch (RemoteException ex) {
-            Logger.getLogger(CalcServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Naming.rebind("//localhost:2335/calc",f);
+            System.out.println("Servidor Calculadora pronto");
+        } catch (RemoteException ex) {System.out.println("Exception in " + ex);}
+        catch (Exception e) {e.printStackTrace();}
     }    
 
     @Override
