@@ -4,7 +4,7 @@ package pratica6;
 *         IFTM          *
 * Sistemas Distribuídos *
 *************************
-* IMPLEMENTAÇÃO DE RPC em Java - RMI
+* Implementacao DE RPC em Java - RMI
 *************************************/
 import java.rmi.*;
 

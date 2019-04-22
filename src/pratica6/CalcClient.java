@@ -8,7 +8,7 @@ package pratica6;
 *************************************/
 import java.rmi.*;
 
-public class Cliente {
+public class CalcClient {
     public static void main(String[] args)  {
     }    
 }
