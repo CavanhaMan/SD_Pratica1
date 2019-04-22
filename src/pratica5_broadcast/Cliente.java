@@ -28,7 +28,7 @@ public class Cliente {
                 for(int i=0 ; i<resposta.getLength() ; i++)
                     System.out.print((char)resposta.getData()[i]);
                 System.out.println();
-                System.out.println("> ");
+                System.out.print("> ");
                 envio = teclado.readLine();
             }
             s.close();
