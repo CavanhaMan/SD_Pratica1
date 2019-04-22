@@ -8,7 +8,7 @@ package pratica1;
 */
 import java.io.*;
 import java.net.*;
-
+//aula 03
 public class Cliente {
     public static void main(String[] args){ //não usamos o throw para poder tratar o erro localmente e enviar uma resposta amigavel ao cliente
         try {       //neste caso usaremos o try-catch
