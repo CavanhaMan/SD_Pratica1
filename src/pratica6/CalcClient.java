@@ -8,8 +8,6 @@ package pratica6;
 *************************************/
 import java.net.MalformedURLException;
 import java.rmi.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CalcClient {
     public static void main(String[] args)  {

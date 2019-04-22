@@ -17,3 +17,11 @@ A função de um procedimento STUB é que vai desempacotar
 os argumentos da mensagem de requisição, encaminhar pra
 execução, pegar a resposta, empacotar e reenviar.
 
+===========================================
+
+DOMINÓ
+
+Trabalho - vetor de 28 posições sem repetição
+Distribuido aleatoriametne sem repetição
+Terá as "peças de ponta" onde novas peças poderão se encaixar
+
