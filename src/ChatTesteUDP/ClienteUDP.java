@@ -89,8 +89,7 @@ public class ClienteUDP extends JFrame implements ActionListener, KeyListener {
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
         String envio, textoMensagem;
 
-        ou = socket.get
-                .getOutputStream();
+        //ou = socket.get.getOutputStream();
         ouw = new OutputStreamWriter(ou);
         bfw = new BufferedWriter(ouw);
         bfw.write(txtNome.getText()+"\r\n");
