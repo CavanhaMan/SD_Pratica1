@@ -13,7 +13,7 @@ public class CalcClient {
     public static void main(String[] args)  {
         try {
             Calc calculator;
-            calculator = (Calc) Naming.lookup("rmi://10.10.80.114:2335/calc");
+            calculator = (Calc) Naming.lookup("rmi://localhost:2335/calc");
             int a=3; //n da serie
             int b = 14;
             int f = calculator.getSoma(a,b);
