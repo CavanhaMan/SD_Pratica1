@@ -20,10 +20,6 @@ import java.io.Writer;
 import java.net.Socket;
 import javax.swing.*;
 
-/**
- *
- * @author Cavanha
- */
 public class ClienteCT extends JFrame implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 1L;
